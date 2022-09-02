@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"encoding/csv"
+	"flag"
 	"fmt"
 	"io"
 	"os"
@@ -11,10 +12,23 @@ import (
 	banking "github.com/abar64/agentcommon/banking"
 )
 
+func BankingDartC4DVer() string {
+	return "BankingDartC4DVer v0.0.0.1"
+}
+
 var fileIdentifier = "DartC4DFile.exe"
 var routingGateway = "656565"
 
 func main() {
+	versionPtr := flag.Bool("version", false, "Display modue version numbers")
+	flag.Parse()
+
+	if *versionPtr {
+		println(BankingDartC4DVer())
+		println(banking.FileC4DVer())
+		os.Exit(0)
+	}
+
 	// Load a TXT file.
 	//	f, _ := os.Open("Retail_310522.dart")
 	f, _ := os.Open("APBTestData.CSV")
